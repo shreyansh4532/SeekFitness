@@ -1,33 +1,42 @@
-import {ThemeProvider, styled} from 'styled-components';
-import {lightTheme} from '../src/utils/Themes.js';
-import {BrowserRouter} from 'react-router-dom';
-import Authentication from './pages/Authentication.jsx';
+import { ThemeProvider, styled } from "styled-components";
+import { lightTheme } from "../src/utils/Themes.js";
+import { BrowserRouter } from "react-router-dom";
+import Authentication from "./pages/Authentication.jsx";
+import { useState } from "react";
+import Navbar from "./components/Navbar.jsx";
 
 const Container = styled.div`
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: ${({theme}) => theme.bg};
-    color: ${({theme}) => theme.text_primary};
-    overflow-x: hidden;
-    overflow-y: hidden;
-    transition: all 0.2s ease;
-  `;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: ${({ theme }) => theme.bg};
+  color: ${({ theme }) => theme.text_primary};
+  overflow-x: hidden;
+  overflow-y: hidden;
+  transition: all 0.2s ease;
+`;
 
 function App() {
-  
+  const [user, setUser] = useState(true);
+
   return (
     <>
       <ThemeProvider theme={lightTheme}>
         <BrowserRouter>
-          <Container>
-            <Authentication />
-          </Container>
+          {user ? (
+            <Container>
+              <Navbar />
+            </Container>
+          ) : (
+            <Container>
+              <Authentication />
+            </Container>
+          )}
         </BrowserRouter>
       </ThemeProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
