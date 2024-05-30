@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import LogoImage from "../utils/Images/Logo.png";
 import AuthImage from "../utils/Images/AuthImage.jpg";
